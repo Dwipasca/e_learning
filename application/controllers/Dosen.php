@@ -5,7 +5,7 @@ class Dosen extends CI_Controller {
         public function __construct(){
                 parent::__construct();
                 // call library SSP for datatable server side
-                $this->load->library('ssp');
+                $this->load->library('SSPCustom');
                 $this->load->model('Dosen_model');
         }
 
@@ -49,10 +49,14 @@ class Dosen extends CI_Controller {
                         'db' => $this->db->database,
                         'host' => $this->db->hostname
                 );
+                
+                // echo json_encode(
+                //         SSP::simple($_POST, $sql_details, $table, $primaryKey, $columns, $where)
+                // );
 
                 echo json_encode(
-                        SSP::simple($_POST, $sql_details, $table, $primaryKey, $columns)
-                );
+                        SSPCustom::simpleCustom( $_GET, $sql_details, $table, $primaryKey, $columns, "matakuliah ='SKRIPSI'" )
+                    );
         }
 
         public function index(){

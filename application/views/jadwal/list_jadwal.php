@@ -14,12 +14,10 @@
 
             <div class="page-title">
               <div class="title_left">
-                <h3>Jadwal</h3>
+                <h3>Jadwal Dosen</h3>
               </div>
 
-              <div class="title_right">
-                <?php echo anchor('jadwal/add','Tambah Tugas',array('class'=>'btn bg-green pull-right'));?>
-              </div>
+              
             </div>
 
             <div class="clearfix"></div>
@@ -29,7 +27,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Jadwal Mengajar Matakuliah </h2>
+                    <h2>Daftar Mengajar </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -41,25 +39,19 @@
                   <div class="x_content">
                     
                     <table id="example" class="table table-striped table-bordered example">
-                      <!-- <thead>
+                      <thead>
                         <tr>
-                          <th>id</th>
-                          <th>kodemk</th>
-                          <th>namamk</th>
-                          <th>sks</th>
-                          <th>tahun</th>
-                          <th>jammulai</th>
-                          <th>jamselesai</th>
-                          <th>hari</th> 
+                        <th>No</th>
+									      <th>Kode Mk</th>
+                        <th>Matakuliah</th>
+                        <th>SKS</th>
+                        <th>Tahun</th>
+                        <th>Jam Mulai</th>
+                        <th>Jam Selesai</th>
+                        <th>Hari</th>
+                        <th>Aksi</th>
                         </tr>
                       </thead>
-                      <tbody>
-                      </tbody> -->
-                      <thead>
-                          <tr><th>ID</th><th>KODEMK</th></tr>
-                      </thead>
-                      <tbody>
-                      </tbody>
 
                     </table>
                   </div>
@@ -118,34 +110,44 @@
 <script>
 
     $(document).ready(function () {
-
-      var save_method; //for save method string
-      var table;
-        //datatables
-        var t = $('.example').DataTable({
         
-                    "processing": true, //Feature control the processing indicator.
-                    "serverSide": true, //Feature control DataTables' server-side processing mode.
-                    "order": [], //Initial no order.
-                    // Load data for the table's content from an Ajax source
-                    "ajax": {
-                        "url": '<?php echo site_url('jadwal/json'); ?>',
-                        "type": "POST"
-                    },
-                    //Set column definition initialisation properties.
-                    
-                    "columns" : [
-                      { "data": 'id' },
-                      {"data" : "kodemk"},
-                      // {"data" : "namamk"},
-                      // {"data" : "sks"},
-                      // {"data" : "tahun"},
-                      // {"data" : "jammulai"},
-                      // {"data" : "jamselesai"},
-                      // {"data" : "hari"}
-                    ],
+        var t = $('.example').DataTable({
+					"ajax" : '<?php echo site_url('jadwal/data'); ?>',
+					"order" : [[2,'asc']],
+					"scrollX": true,
+					"columns" : [
+						{
+							"data" : null,
+							"width" : '30px',
+							"sClass" : 'text-center',
+							"orderable" : false,
+						},
+						// {   "data" : 'id' },
+						
+						{
+							"data" : 'kodemk',
+							"width" : '120px',
+							"sClass" : 'text-center'
+						},
+						{   "data" : 'namamk',"width" : '180px' },
+						{   "data" : 'sks',"sClass" : 'text-center',"width" : '50px' },
+						{   "data" : 'tahun',"width" : '50px' },
+						{   "data" : 'jammulai',"width" : '120px' },
+						{   "data" : 'jamselesai',"width" : '120px' },
+						{   "data" : 'hari',"width" : '50px' },
+						{   "data" : 'aksi',"width" : '50px' },
+					]
 
+                    
                 });
+
+                t.on('order.dt search.dt', function(){
+                    t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i){
+                        cell.innerHTML = i+1;
+                    });
+                }).draw();
+                
+                $.fn.dataTable.ext.errMode = 'throw';
     });
 
 	function test() {
