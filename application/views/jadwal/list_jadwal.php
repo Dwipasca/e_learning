@@ -112,7 +112,7 @@
     $(document).ready(function () {
         
         var t = $('.example').DataTable({
-					"ajax" : '<?php echo site_url('jadwal/data'); ?>',
+					"ajax" : '<?php echo site_url('jadwal/data_jadwal'); ?>',
 					"order" : [[2,'asc']],
 					"scrollX": true,
 					"columns" : [
