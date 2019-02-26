@@ -3,17 +3,17 @@
 
 class Jadwal extends CI_Controller {
 
-    public function __construct(){
-        parent::__construct();
-        // call library SSP for datatable server side
-        $this->load->library('SSPCustom');
-        //$this->load->library('SSP');
-        $this->load->model('Jadwal_model');
-    }
+        public function __construct(){
+                parent::__construct();
+                // call library SSP for datatable server side
+                $this->load->library('SSPCustom');
+                //$this->load->library('SSP');
+                $this->load->model('Jadwal_model');
+        }
 
-    function index() {
-        $this->load->view('jadwal/list_jadwal');
-    }
+        function index() {
+                $this->load->view('jadwal/list_jadwal');
+        }
 
         function data_jadwal(){
 		
@@ -30,7 +30,7 @@ class Jadwal extends CI_Controller {
                         array('db' => 'tahun', 'dt' => 'tahun'),
                         array('db' => 'jammulai', 'dt' => 'jammulai'),
                         array('db' => 'jamselesai', 'dt' => 'jamselesai'),
-                        array('db' => 'hari', 'dt' => 'hari'),
+                        array('db' => 'koderuang', 'dt' => 'koderuang'),
                         array('db' => 'idjadwal', 'dt' => 'idjadwal'),
                         array(
                                 'db' => 'idjadwal',

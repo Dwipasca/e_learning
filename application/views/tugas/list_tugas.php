@@ -14,14 +14,10 @@
 
             <div class="page-title">
               <div class="title_left">
-                <h3>Jadwal Dosen</h3>
-                
+                <h3>List Mahasiswa</h3>
               </div>
-              <div class="title_right">
-                <?php
-                  echo anchor('dosen/add','Tambah Tugas', array('class' => 'btn btn-primary btn-sm pull-right'));
-                ?>
-                </div>
+
+              
             </div>
 
             <div class="clearfix"></div>
@@ -31,7 +27,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Daftar Mengajar </h2>
+                    <h2>Mahasiswa Mengikuti Matakuliah </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -42,22 +38,37 @@
                   </div>
                   <div class="x_content">
                     
-                    <table id="example" class="table table-striped table-bordered example">
+                  <table class="table table-bordered table-hover">
                       <thead>
                         <tr>
-                        <th>No</th>
-									      <th>Kode Mk</th>
-                        <th>Matakuliah</th>
-                        <th>SKS</th>
-                        <th>Tahun</th>
-                        <th>Jam Mulai</th>
-                        <th>Jam Selesai</th>
-                        <th>Kode Ruangan</th>
-                        <th>Aksi</th>
+                          <th>No</th>
+                          <th>Kodemk</th>
+                          <th>Nip</th>
+                          <th>Title Tugas</th>
+                          <th>Jam</th>
+                          <th>Tanggal</th>
+                          <th>Aksi</th>
+                          <th>Tahun</th>
                         </tr>
                       </thead>
-
+                      <tbody>
+                        
+                        <?php
+                          
+                        $no = 1;
+                        foreach($mahasiswa as $mhs) : ?>
+                          <tr> 
+                          <th scope="row"> <?php echo $no++; ?> </th>
+                          <td> <?php echo $mhs['NIM']; ?> </td>
+                          <td> <?php echo $mhs['Name']; ?> </td>
+                          <td> </td>
+                          <td> </td>
+                          </tr>
+                        <?php endforeach; ?>
+                        
+                      </tbody>
                     </table>
+                    
                   </div>
                 </div>
               </div>
@@ -112,47 +123,7 @@
 </html>
 
 <script>
-
-    $(document).ready(function () {
-        
-        var t = $('.example').DataTable({
-					"ajax" : '<?php echo site_url('jadwal/data_jadwal'); ?>',
-					"order" : [[2,'asc']],
-					"scrollX": true,
-					"columns" : [
-						{
-							"data" : null,
-							"width" : '30px',
-							"sClass" : 'text-center',
-							"orderable" : false,
-						},
-						// {   "data" : 'id' },
-						
-						{
-							"data" : 'kodemk',
-							"width" : '120px',
-							"sClass" : 'text-center'
-						},
-						{   "data" : 'namamk',"width" : '180px' },
-						{   "data" : 'sks',"sClass" : 'text-center',"width" : '50px' },
-						{   "data" : 'tahun',"width" : '50px' },
-						{   "data" : 'jammulai',"width" : '120px' },
-						{   "data" : 'jamselesai',"width" : '120px' },
-						{   "data" : 'koderuang',"width" : '90px' },
-						{   "data" : 'aksi',"width" : '50px' },
-					]
-
-                    
-                });
-
-                t.on('order.dt search.dt', function(){
-                    t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i){
-                        cell.innerHTML = i+1;
-                    });
-                }).draw();
-                
-                $.fn.dataTable.ext.errMode = 'throw';
-    });
+  
 
 	function test() {
 		var x=confirm("Apakah anda yakin ingin menghapus data ini ?")

@@ -2,7 +2,7 @@
 
 class Dosen_model extends CI_Model{
 
-	public $tabel = 'upload_file';
+	public $tabel = 'upload_tugas';
 	
 	//fetch all pictures from db
 	// function get_all_pics(){
@@ -16,7 +16,7 @@ class Dosen_model extends CI_Model{
 	}
 
 	function delete($id){
-        return $this->db->delete( $this->tabel, array('id'=>$id));
+        return $this->db->delete( $this->tabel, array('id_upload'=>$id));
     }
 	
 }

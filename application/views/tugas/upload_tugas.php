@@ -1,4 +1,4 @@
-<?php $this->load->view('template/header'); ?>
+ <?php $this->load->view('template/header'); ?>
 <!-- page content -->
 <div class="right_col" role="main">
           <div class="">
@@ -14,8 +14,6 @@
               <?php echo $_SESSION['danger']; ?>
             </div>
           <?php } ?>
-
-
 
                   <div class="x_title">
                     <h2>Form Upload Tugas <small>different form elements</small></h2>
@@ -38,20 +36,28 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Title </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="title" name="title"  class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="title" name="title"  class="form-control col-md-7 col-xs-12" autocomplete="off">
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="matakuliah">Matakuliah </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="matakuliah" name="matakuliah"  class="form-control col-md-7 col-xs-12">
+                          <!-- <input type="text" id="matakuliah" name="matakuliah"  class="form-control col-md-7 col-xs-12"> -->
+
+                          <select class="select2_single form-control" id ="kodemk" name="kodemk">
+                            <?php 
+                              foreach ($sql as $s) : 
+                            ?>
+                              <option value=" <?php echo $s['KodeMK']; ?> "> <?php echo $s['NamaMK'];?> </option>
+                            <?php endforeach; ?>
+                          </select>
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="jam" class="control-label col-md-3 col-sm-3 col-xs-12" >Jam</label>
                         <div class="col-md-2 col-sm-2 col-xs-12">
                             <div class="input-group date" id="myDatepicker3">
-                                <input type="text" class="form-control" id="jam" name="jam">
+                                <input type="text" class="form-control" id="jam" name="jam" autocomplete="off">
                                 <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
@@ -64,7 +70,7 @@
                           <!-- <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name"> -->
  
                                 <div class="input-group date" id="myDatepicker2">
-                                    <input type="text" class="form-control" id="tanggal" name="tanggal">
+                                    <input type="text" class="form-control" id="tanggal" name="tanggal" autocomplete="off">
                                     <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -74,7 +80,7 @@
                       </div>
                       
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="upload">Upload File </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="upload">Upload Tugas </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input id="upload_file" name="upload_file" class="date-picker form-control col-md-7 col-xs-12"  type="file">
                         </div>
@@ -83,7 +89,8 @@
                       <div class="form-group">
                         <label for="ket" class="control-label col-md-3 col-sm-3 col-xs-12">Keterangan</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="keterangan" class="form-control col-md-7 col-xs-12" type="text" name="keterangan">
+                          <!-- <input id="keterangan" class="form-control col-md-7 col-xs-12" type="text" name="keterangan"> -->
+                          <textarea id="keterangan" rows="8" class="form-control col-md-7 col-xs-12" type="text" name="keterangan"></textarea>
                         </div>
                       </div>
 
@@ -91,7 +98,7 @@
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                           <?php 
-                          echo anchor('dosen','Cancel',array('class'=>'btn btn-danger'));
+                          echo anchor('jadwal','Cancel',array('class'=>'btn btn-danger'));
                           echo anchor('dosen/add','Reset',array('class'=>'btn btn-primary'));
                           ?>
                           <button type="submit" class="btn btn-success">Submit</button>

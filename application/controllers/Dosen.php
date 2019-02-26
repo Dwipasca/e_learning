@@ -59,26 +59,26 @@ class Dosen extends CI_Controller {
                     );
         }
 
-        public function index(){
-                $this->load->view('list_mahasiswa/list');       
-        }
 
         public function add(){
 
                 $this->form_validation->set_rules('title','Title','required');
-                $this->form_validation->set_rules('matakuliah','Matakuliah','required');
+                $this->form_validation->set_rules('kodemk','kodemk','required');
                 $this->form_validation->set_rules('jam','Jam','required');
                 $this->form_validation->set_rules('tanggal','Tanggal','required');
                 // $this->form_validation->set_rules('upload_file','Upload File','required');
                 $this->form_validation->set_rules('keterangan','Keterangan','required');
 
                 if ($this->form_validation->run() === FALSE) {
-			$this->load->view('tugas/upload_file');
+                        $nip = $this->session->userdata('nip');
+                        $data['sql'] = $this->db->get_where('_v2_jadwal', array('iddosen'=> $nip))->result_array();
+			$this->load->view('tugas/upload_tugas', $data);
 			
 		}else {
                         $data = array();
-			$data['matakuliah'] = $this->input->post('matakuliah'); 
-			$data['title_file'] = $this->input->post('title'); 
+                        $data['nip'] = $this->session->userdata('nip');
+			$data['kodemk'] = $this->input->post('kodemk'); 
+			$data['title_tugas'] = $this->input->post('title'); 
 			$data['jam'] = $this->input->post('jam'); 
                         $data['tanggal'] = $this->input->post('tanggal'); 
                         $data['keterangan'] = $this->input->post('keterangan'); 
@@ -112,7 +112,7 @@ class Dosen extends CI_Controller {
                                 $this->Dosen_model->store_pic_data($data);
                                 
                                 $this->session->set_flashdata('success','Tugas Telah Berhasil Ditambahkan');
-				redirect('/');
+				redirect('jadwal');
 			}
 
 			

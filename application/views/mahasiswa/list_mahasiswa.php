@@ -58,7 +58,8 @@
                           <th scope="row"> <?php echo $no++; ?> </th>
                           <td> <?php echo $mhs['NIM']; ?> </td>
                           <td> <?php echo $mhs['Name']; ?> </td>
-                          <td> <?php echo $mhs['Tahun']; ?> </td>
+                          <td> </td>
+                          <td> </td>
                           </tr>
                         <?php endforeach; ?>
                         
