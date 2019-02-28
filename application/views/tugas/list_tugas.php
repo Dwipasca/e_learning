@@ -42,13 +42,14 @@
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>Kodemk</th>
                           <th>Nip</th>
+                          <th>Kodemk</th>
                           <th>Title Tugas</th>
+                          <th>Path</th>
                           <th>Jam</th>
                           <th>Tanggal</th>
+                          <th>Keterangan</th>
                           <th>Aksi</th>
-                          <th>Tahun</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -56,13 +57,18 @@
                         <?php
                           
                         $no = 1;
-                        foreach($mahasiswa as $mhs) : ?>
+                        foreach($tugas as $tgs) : ?>
                           <tr> 
-                          <th scope="row"> <?php echo $no++; ?> </th>
-                          <td> <?php echo $mhs['NIM']; ?> </td>
-                          <td> <?php echo $mhs['Name']; ?> </td>
-                          <td> </td>
-                          <td> </td>
+                            <th scope="row"> <?php echo $no++; ?> </th>
+                            <td hidden> <?php echo $tgs['id_upload']; ?> </td>
+                            <td> <?php echo $tgs['nip']; ?> </td>
+                            <td> <?php echo $tgs['kodemk']; ?> </td>
+                            <td> <?php echo $tgs['title_tugas']; ?> </td>
+                            <td> <?php echo $tgs['path']; ?> </td>
+                            <td> <?php echo $tgs['jam']; ?> </td>
+                            <td> <?php echo $tgs['tanggal']; ?> </td>
+                            <td> <?php echo $tgs['keterangan']; ?> </td>
+                            <td> <?php echo anchor('jadwal/list_mahasiswa/'.$tgs['kodemk'],'<i class="fa fa-eye"> detail</i>', array('class' => 'btn btn-primary btn-sm')); ?> </td>
                           </tr>
                         <?php endforeach; ?>
                         

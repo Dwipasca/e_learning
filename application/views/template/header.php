@@ -77,7 +77,7 @@
                 <h3>General</h3>
                 <ul class="nav side-menu">
                   
-                  <li><a href="javascript:void(0)"><i class="fa fa-home"></i> Home <span class="label label-success pull-right">Coming Soon</span></a></li>
+                  <li><a href="<?php echo base_url('jadwal'); ?>"><i class="fa fa-home"></i> Home <span class="label label-success pull-right">Coming Soon</span></a></li>
                   
                   <li><a><i class="fa fa-edit"></i> Jadwal <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">

@@ -8,7 +8,7 @@ class Jadwal extends CI_Controller {
                 // call library SSP for datatable server side
                 $this->load->library('SSPCustom');
                 //$this->load->library('SSP');
-                $this->load->model('Jadwal_model');
+                $this->load->model('jadwal_model');
         }
 
         function index() {
@@ -33,10 +33,10 @@ class Jadwal extends CI_Controller {
                         array('db' => 'koderuang', 'dt' => 'koderuang'),
                         array('db' => 'idjadwal', 'dt' => 'idjadwal'),
                         array(
-                                'db' => 'idjadwal',
+                                'db' => 'kodemk',
                                 'dt' => 'aksi',
                                 'formatter' => function ($d) { // var $d itu untuk ke primary key yaitu stambuk 
-                                        return anchor('jadwal/detail/'.$d,'<i class="fa fa-eye"> detail</i>', array('class' => 'btn btn-primary btn-sm'));
+                                        return anchor('jadwal/list_tugas/'.$d,'<i class="fa fa-eye"> detail</i>', array('class' => 'btn btn-primary btn-sm'));
                                 },
                         )
                 );
@@ -60,21 +60,22 @@ class Jadwal extends CI_Controller {
         
         }
     
-
-        function detail($idjadwal) {
-
-                $idjadwal = $this->uri->segment('3');
-
-                //$data['mahasiswa'] = $this->Jadwal_model->list_mahasiswa('_v2_krs20181', $idjadwal);
+        function list_tugas($kodemk) {
+                $nip= $this->session->userdata('nip');
+                //$idjadwal = $this->uri->segment('3');
+                $data['tugas'] = $this->jadwal_model->list_tugas($nip, $kodemk);
                 
-                $data['mahasiswa'] = $this->Jadwal_model->list_mahasiswa($idjadwal);
-                
-                
-
-                $this->load->view('mahasiswa/list_mahasiswa', $data);
-        
+                $this->load->view('tugas/list_tugas', $data);
         }
 
+        function list_mahasiswa($kodemk) {
+                $nip= $this->session->userdata('nip');
+                $data['mahasiswa'] = $this->jadwal_model->list_mahasiswa($nip, $kodemk);
+                // print_r($data);
+                $this->load->view('mahasiswa/list_mahasiswa', $data);
+        }
+
+        
         
 
 

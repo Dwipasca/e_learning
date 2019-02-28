@@ -36,10 +36,10 @@ class Auth extends CI_Controller {
             else if (!empty($result2)) {
                 foreach($result2 as $row);
 
-        		$this->session->set_userdata('nip', $row->login);
+        		$this->session->set_userdata('nim', $row->login);
                 $this->session->set_userdata('nama', $row->name);
                 
-                echo 'mahasiswa '.$this->session->userdata('nama');
+                redirect('mahasiswa');
             }
             else{
                 //$this->session->set_flashdata('message', '<div class="alert alert-warning"> Username/Password/Kunci salah</div>');

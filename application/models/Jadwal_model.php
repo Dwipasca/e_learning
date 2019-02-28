@@ -12,17 +12,23 @@ class Jadwal_model extends CI_Model{
      * where column yg sama antara kedua tabel tersebut
      * orderby untuk mengurutkan data asc = dari kecil ke besar
      */
-    function list_mahasiswa($idjadwal){
-        
+    function list_mahasiswa($nip, $kodemk){
         $this->db->select('*');
-		$this->db->from('_v2_krs20181 a'); 
-		$this->db->join('_v2_mhsw b', 'b.NIM=a.NIM', 'left');
-		$this->db->where('a.IDJADWAL',$idjadwal);
-		$this->db->order_by('b.NIM','asc');         
-		$query = $this->db->get();
-    	return $query->result_array();
+        $this->db->from('_v2_jadwal a');
+        $this->db->join('_v2_krs20181 b', 'b.IDJadwal=a.IDJadwal', 'left');
+        $this->db->join('_v2_mhsw c', 'c.NIM=b.NIM', 'left');
+        $this->db->where('a.IDDosen', $nip);
+        $this->db->where('a.Kodemk', $kodemk);
+        return $this->db->get()->result_array();
+    }
 
-        //return $this->db->get_where($table, array('idjadwal' => $idjadwal))->result_array();
+    function list_tugas($nip, $kodemk) {
+        $this->db->select('*');
+        $this->db->from('upload_tugas');
+        $this->db->where('nip', $nip);
+        $this->db->where('kodemk', $kodemk);
+        $query = $this->db->get(); 
+        return $query->result_array();
     }
 
 }
