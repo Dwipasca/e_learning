@@ -1,8 +1,12 @@
 <?php 
 
 class Mahasiswa_model extends CI_Model{
+	
+	public function __construct() {
+		parent::__construct();
+	}
 
-	public $tabel = '';
+	public $tabel = 'submit_tugas';
 	
 	//fetch all pictures from db
 	// function get_all_pics(){
@@ -10,7 +14,6 @@ class Mahasiswa_model extends CI_Model{
 	// 	return $all_pics->result();
 	// }
 
-	//save picture data to db
 	function store_pic_data($data){
 		return $this->db->insert( $this->tabel, $data);
 	}

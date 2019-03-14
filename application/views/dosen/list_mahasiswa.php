@@ -38,14 +38,17 @@
                   </div>
                   <div class="x_content">
                     
-                  <table class="table table-bordered table-hover">
+                  <!-- <table class="table table-bordered table-hover"> -->
+                  <table class="table table-striped jambo_table bulk_action">
                       <thead>
                         <tr>
                           <th>No</th>
                           <th>Stambuk</th>
                           <th>Mahasiswa</th>
                           <th>Status Tugas</th>
+                          <!-- <th>Path</th> -->
                           <th>Nilai</th>
+                          <th>Aksi</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -58,8 +61,22 @@
                           <th scope="row"> <?php echo $no++; ?> </th>
                           <td> <?php echo $mhs['NIM']; ?> </td>
                           <td> <?php echo $mhs['Name']; ?> </td>
-                          <td> </td>
-                          <td> </td>
+                          <td> 
+                            <?php 
+                              $kodemk = $this->uri->segment('3');
+                              $nip = $this->session->nip;
+                              $id_status = $controller->cek_status($mhs['NIM'],$kodemk,$nip);
+                              echo $id_status;
+                            ?>
+                          </td>
+                          <td>
+                            
+                          </td>
+                            <!-- <td> </td> -->
+                            <td> 
+                              
+                              <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#add-menu-modal">Nilai</button> 
+                            </td>
                           </tr>
                         <?php endforeach; ?>
                         
@@ -74,6 +91,49 @@
           </div>
         </div>
         <!-- /page content -->
+        <!-- add modal -->
+        <div class="modal fade" id="add-menu-modal" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-xs" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="scrollmodalLabel">Menentukan Nilai Mahasiswa</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+          <form action="<?=base_url('')?>" method="post" enctype="multipart/form-data" class="form-horizontal form-label-left">
+                            
+                  <div class="row form-group">
+                    <div class="col col-md-3">
+                        
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Nilai</label>
+                    </div>
+                    <div class="col-4 col-md-4">
+                      <div class="row">
+                        <div class="col-md-12">
+                            
+                            <input type="text" name="country" id="nilai" class="form-control col-md-3" autocomplete="off">
+                        </div>
+                        
+                      </div>
+                    </div>
+                </div>
+
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Batal</button>
+								<input type="submit" class="btn btn-success btn-lg" value="Simpan">
+							</div>
+						</form>
+                    </div>
+                </div>
+            </div>
+			<!-- end add modal -->
+
+
 
         <!-- footer content -->
         <footer>

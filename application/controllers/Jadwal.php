@@ -12,7 +12,7 @@ class Jadwal extends CI_Controller {
         }
 
         function index() {
-                $this->load->view('jadwal/list_jadwal');
+                $this->load->view('dosen/list_jadwal');
         }
 
         function data_jadwal(){
@@ -51,7 +51,6 @@ class Jadwal extends CI_Controller {
                 // echo json_encode(
                 //         SSP::simple($_POST, $sql_details, $table, $primaryKey, $columns, $where)
                 // );
-                
                 $nip = $this->session->userdata('nip');
 
                 echo json_encode(
@@ -62,17 +61,27 @@ class Jadwal extends CI_Controller {
     
         function list_tugas($kodemk) {
                 $nip= $this->session->userdata('nip');
-                //$idjadwal = $this->uri->segment('3');
+                $kodemk= $this->uri->segment(3);
                 $data['tugas'] = $this->jadwal_model->list_tugas($nip, $kodemk);
-                
-                $this->load->view('tugas/list_tugas', $data);
+                $this->load->view('dosen/list_tugas', $data);
         }
 
         function list_mahasiswa($kodemk) {
                 $nip= $this->session->userdata('nip');
+                $data['controller'] = $this;
                 $data['mahasiswa'] = $this->jadwal_model->list_mahasiswa($nip, $kodemk);
-                // print_r($data);
-                $this->load->view('mahasiswa/list_mahasiswa', $data);
+                $this->load->view('dosen/list_mahasiswa', $data);
+        }
+
+        function cek_status($nim, $kodemk, $nip) {
+                $status = $this->jadwal_model->check_status($nim, $kodemk, $nip);
+
+                if ($status) {
+                        return '<button type="button" class="btn btn-info btn-xs">Kumpul Tugas</button>';
+                } else {
+                        return '<button type="button" class="btn btn-danger btn-xs">Belum Kumpul Tugas</button>';
+                }
+                
         }
 
         

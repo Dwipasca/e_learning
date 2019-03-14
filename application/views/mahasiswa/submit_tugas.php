@@ -16,7 +16,7 @@
           <?php } ?>
 
                   <div class="x_title">
-                    <h2>Form Upload Tugas <small>different form elements</small></h2>
+                    <h2>Form Submit Tugas <small>different form elements</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -48,7 +48,7 @@
                             <?php 
                               foreach ($sql as $s) : 
                             ?>
-                              <option value=" <?php echo $s['KodeMK']; ?> "> <?php echo $s['NamaMK'];?> </option>
+                              <option value="<?=$s['KodeMK'];?>"> <?php echo $s['NamaMK'];?> </option>
                             <?php endforeach; ?>
                           </select>
                         </div>
