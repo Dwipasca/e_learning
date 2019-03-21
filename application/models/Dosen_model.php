@@ -17,6 +17,11 @@ class Dosen_model extends CI_Model{
 
 	function delete($id){
         return $this->db->delete( $this->tabel, array('id_upload'=>$id));
-    }
-	
+	}
+
+	function editNilai($nim, $idUpload, $data) {
+		$this->db->where('nim', $nim);
+		$this->db->where('id_upload', $idUpload);
+		return $this->db->update('submit_tugas', $data);
+	}	
 }

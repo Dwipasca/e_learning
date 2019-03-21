@@ -11,7 +11,9 @@ class Mahasiswa extends CI_Controller {
 
         // tampilan mahasiswa setelah login
         function index(){
-            $this->load->view('mahasiswa/dashboard_mahasiswa');
+                $nim= $this->session->userdata('nim');
+                $data['sql'] = $this->db->get_where('_v2_krs20181', array('NIM'=>$nim))->result_array();
+                $this->load->view('mahasiswa/dashboard_mahasiswa', $data);
         }
 
         //daftar tugas mahasiswa sesuai matakuliah
@@ -49,5 +51,6 @@ class Mahasiswa extends CI_Controller {
 			}
                 
         }
+
 
 }

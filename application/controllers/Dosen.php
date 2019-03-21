@@ -7,6 +7,7 @@ class Dosen extends CI_Controller {
                 // call library SSP for datatable server side
                 $this->load->library('SSPCustom');
                 $this->load->model('Dosen_model');
+                $this->load->model('jadwal_model');
         }
 
         //datatables menampilkan data dosen mengajar matakuliah
@@ -52,7 +53,7 @@ class Dosen extends CI_Controller {
                 // );
                 echo json_encode(
                         SSPCustom::simpleCustom( $_GET, $sql_details, $table, $primaryKey, $columns, "matakuliah ='SKRIPSI'" )
-                    );
+                );
         }
 
         //menambahkan tugas dari dosen untuk mahasiswa
@@ -82,13 +83,13 @@ class Dosen extends CI_Controller {
                         $config['max_size']             = '2500';
                         $this->load->library('upload', $config);
 			if ( ! $this->upload->do_upload('upload_file')){
-				// $error = array('error' => $this->upload->display_errors());
+                                // $error = array('error' => $this->upload->display_errors());
                                 // $this->load->view('tugas/upload_file', $error);
                                 // echo'error upload file';
                                 $this->session->set_flashdata('danger','file gagal di upload karena terlalu besar maksimal file <b>2 MB</b>');
                                 redirect('dosen/add');
 			}else{
-				//file is uploaded successfully
+                                //file is uploaded successfully
 				//now get the file uploaded data
 				$upload_data = $this->upload->data();
 				//get the uploaded file name
@@ -100,15 +101,35 @@ class Dosen extends CI_Controller {
 			}
                 }
         }
-
-        //menghapus tugas yang telah di buat oleh dosens
+        
+        //menghapus tugas yang telah di buat oleh dosen
         public function delete($id){
-		$this->Dosen_model->delete($id);
+                $this->Dosen_model->delete($id);
 		$this->session->set_flashdata('success','Data <b>'.$id.'</b> Berhasil Dihapus');
 		redirect('/');
 	}
+        
+        function addNilai ($id_upload){
+                // $id_upload = $this->uri->segment('4');
+                $this->form_validation->set_rules('nilai', 'Nilai', 'required');
 
+                if ($this->form_validation->run() === FALSE) {
+                        redirect('jadwal');
+                }else { 
+                        $data = array();
+                        $data['nilai'] = $this->input->post('nilai');
+                        $nim = $this->input->post('nim');
 
+                        // print_r($data);
+                        // print($nim);
+                        // print('-');
+                        // print($id_upload);
+                        $cek = $this->Dosen_model->editNilai($nim, $id_upload, $data);
+                        $this->session->set_flashdata('success','Tugas Telah Berhasil Ditambahkan');
+			redirect('jadwal');
+                }
+        }
+        
 
 }
 

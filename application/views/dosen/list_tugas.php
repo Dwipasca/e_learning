@@ -10,14 +10,10 @@
               <?php echo $_SESSION['success']; ?>
             </div>
           <?php } ?>
-
-
             <div class="page-title">
               <div class="title_left">
                 <h3>List Mahasiswa</h3>
-              </div>
-
-              
+              </div>    
             </div>
 
             <div class="clearfix"></div>
@@ -27,7 +23,11 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Mahasiswa Mengikuti Matakuliah </h2>
+                    <h2>Mahasiswa Mengikuti Matakuliah 
+                      <?php 
+
+                      ?> 
+                    </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -57,22 +57,22 @@
                         
                         <?php
                           
-                        $no = 1;
-                        foreach($tugas as $tgs) : ?>
-                          <tr> 
-                            <th scope="row"> <?php echo $no++; ?> </th>
-                            <td> <?php echo $tgs['id_upload']; ?> </td>
-                            <td> <?php echo $tgs['nip']; ?> </td>
-                            <td> <?php echo $tgs['title_tugas']; ?> </td>
-                            <td> <?php echo $tgs['kodemk']; ?> </td>
-                            <td> <?php echo $tgs['path']; ?> </td>
-                            <td> <?php echo $tgs['jam']; ?> </td>
-                            <td> <?php echo $tgs['tanggal']; ?> </td>
-                            <td> <?php echo $tgs['keterangan']; ?> </td>
-                            <td> <?php echo anchor('jadwal/list_mahasiswa/'.$tgs['kodemk'].'/'.$tgs['id_upload'],'<i class="fa fa-eye"> detail</i>', array('class' => 'btn btn-primary btn-sm')); ?> </td>
-                          </tr>
-                        <?php endforeach; ?>
-                        
+                          $no = 1;
+                          foreach($tugas as $tgs) : ?>
+                            <tr> 
+                              <th scope="row"> <?php echo $no++; ?> </th>
+                              <td> <?php echo $tgs['id_upload']; ?> </td>
+                              <td> <?php echo $tgs['nip']; ?> </td>
+                              <td> <?php echo $tgs['title_tugas']; ?> </td>
+                              <td> <?php echo $tgs['kodemk']; ?> </td>
+                              <td> <?php echo $tgs['path']; ?> </td>
+                              <td> <?php echo $tgs['jam']; ?> </td>
+                              <td> <?php echo $tgs['tanggal']; ?> </td>
+                              <td> <?php echo $tgs['keterangan']; ?> </td>
+                              <td> <?php echo anchor('jadwal/list_tugas_mahasiswa/'.$tgs['kodemk'].'/'.$tgs['id_upload'],'<i class="fa fa-eye"> detail</i>', array('class' => 'btn btn-primary btn-sm')); ?> </td>
+                            </tr>
+                          <?php endforeach; ?>
+
                       </tbody>
                     </table>
                     

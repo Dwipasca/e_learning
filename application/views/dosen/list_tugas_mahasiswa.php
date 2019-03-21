@@ -15,9 +15,7 @@
             <div class="page-title">
               <div class="title_left">
                 <h3>List Mahasiswa</h3>
-              </div>
-
-              
+              </div> 
             </div>
 
             <div class="clearfix"></div>
@@ -54,7 +52,6 @@
                       <tbody>
                         
                         <?php
-                          
                         $no = 1;
                         foreach($mahasiswa as $mhs) : ?>
                           <tr> 
@@ -65,17 +62,17 @@
                             <?php 
                               $kodemk = $this->uri->segment('3');
                               $nip = $this->session->nip;
-                              $id_status = $controller->cek_status($mhs['NIM'],$kodemk,$nip);
+                              $idUpload = $this->uri->segment('4');
+                              $id_status = $controller->cek_status($mhs['NIM'],$kodemk,$nip,$idUpload);
                               echo $id_status;
                             ?>
                           </td>
                           <td>
-                            
+                            <?php echo 'nilai'; ?>
                           </td>
                             <!-- <td> </td> -->
                             <td> 
-                              
-                              <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#add-menu-modal">Nilai</button> 
+                              <button class="btn btn-primary btn-xs btn-nilai" data-toggle="modal" data-id="<?php echo $mhs['NIM']; ?>" data-target="#add-menu-modal">Nilai</button> 
                             </td>
                           </tr>
                         <?php endforeach; ?>
@@ -102,30 +99,35 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
-
-          <form action="<?=base_url('')?>" method="post" enctype="multipart/form-data" class="form-horizontal form-label-left">
-                            
+              <div class="modal-body">
+                  <?php $id_upload = $this->uri->segment('4'); ?>
+                  <form action="<?=base_url('dosen/addNilai/'.$idUpload)?>" method="post" enctype="multipart/form-data" class="form-horizontal form-label-left">
+                  
                   <div class="row form-group">
-                    <div class="col col-md-3">
-                        
+
+                    <div class="col col-md-3"> 
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Nilai</label>
                     </div>
                     <div class="col-4 col-md-4">
                       <div class="row">
                         <div class="col-md-12">
+                            <input type="number" name="nilai" id="nilai" class="form-control col-md-3" autocomplete="off" required>
+                            <br>
+                            <input type="text" name="nim" id="nim" class="form-control col-md-3">
                             
-                            <input type="text" name="country" id="nilai" class="form-control col-md-3" autocomplete="off">
                         </div>
                         
+                      
                       </div>
                     </div>
-                </div>
 
-							</div>
+                  </div>
+                  <!-- end div row gorm-group -->
+              </div>
+              
 							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Batal</button>
-								<input type="submit" class="btn btn-success btn-lg" value="Simpan">
+								<button type="button" class="btn btn-secondary " data-dismiss="modal">Batal</button>
+								<input type="submit" class="btn btn-success " value="Simpan">
 							</div>
 						</form>
                     </div>
@@ -180,7 +182,18 @@
 </html>
 
 <script>
-  
+
+  $(document).ready(function () {
+
+    $(document).on('click', '.btn-nilai', function () {
+      $('#nim').val($(this).attr('data-id'));
+
+    });
+
+
+
+  });
+
 
 	function test() {
 		var x=confirm("Apakah anda yakin ingin menghapus data ini ?")

@@ -53,10 +53,11 @@
                                 </ul>
                                 <b>Keterangan :</b>
                                 <p> <?php echo $s['keterangan']; ?> </p>
+                                <!-- <p> <?php echo $s['id_upload']; ?> </p> -->
                                 <br>
                                 <p>
-                                <button class="btn btn-success" data-toggle="modal" data-target="#add-menu-modal">Submit</button>                  
-                                    <button class="btn btn-primary"> Diskusi </button>
+                                  <button class="btn btn-success" data-toggle="modal" data-target="#add-menu-modal" id="btn-submit" data-id="<?= $s['id_upload']; ?>" >Submit</button>                  
+                                  <?php echo anchor('diskusi','Diskusi','class="btn btn-primary"'); ?>
                                 </p>
                               </div>
                           </div>
@@ -94,7 +95,7 @@
                     <div class="col-12 col-md-9">
                       <div class="row">
                         <div class="col-md-12">
-                            <input type="text" value="<?php echo $s['id_upload']; ?>" id="id_upload" name="id_upload">
+                            <input type="text" value="" id="id_upload" name="id_upload">
                             <input type="file" name="upload_file" id="upload_file" >
                         </div>
                         <div class="col-md-12">
@@ -106,8 +107,8 @@
 
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Batal</button>
-								<input type="submit" class="btn btn-success btn-lg" value="Simpan">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+								<input type="submit" class="btn btn-success" value="Simpan">
 							</div>
 						</form>
                     </div>
@@ -131,12 +132,15 @@
 
     <script type="text/javascript">
 
+      $(document).ready(function() {
 
-		$(document).ready(function() {
-			
-			
-	
-		});
+        $(document).on('click', '#btn-submit', function () {
+          $('#id_upload').val($(this).attr('data-id'));
+          
+        });
+        
+
+      });
 
 	</script>
   </body>

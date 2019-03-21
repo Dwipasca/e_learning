@@ -10,8 +10,6 @@
               <?php echo $_SESSION['success']; ?>
             </div>
           <?php } ?>
-
-
             <div class="page-title">
               <div class="title_left">
                 <h3>Jadwal Dosen</h3>
@@ -42,7 +40,7 @@
                   </div>
                   <div class="x_content">
                     
-                    <table id="example" class="table table-striped table-bordered example">
+                    <table id="example" class="table table-striped jambo_table bulk_action example">
                       <thead>
                         <tr>
                         <th>No</th>
@@ -56,8 +54,8 @@
                         <th>Aksi</th>
                         </tr>
                       </thead>
-
                     </table>
+        
                   </div>
                 </div>
               </div>
@@ -66,7 +64,7 @@
           </div>
         </div>
         <!-- /page content -->
-
+        
         <!-- footer content -->
         <footer>
           <div class="pull-right">
@@ -75,6 +73,7 @@
           <div class="clearfix"></div>
         </footer>
         <!-- /footer content -->
+      
       </div>
     </div>
 
@@ -133,7 +132,7 @@
 							"width" : '120px',
 							"sClass" : 'text-center'
 						},
-						{   "data" : 'namamk',"width" : '180px' },
+						{   "data" : 'namamk',"width" : '247px' },
 						{   "data" : 'sks',"sClass" : 'text-center',"width" : '50px' },
 						{   "data" : 'tahun',"width" : '50px' },
 						{   "data" : 'jammulai',"width" : '120px' },
@@ -163,5 +162,4 @@
 		}
 	}
     
-
 </script>

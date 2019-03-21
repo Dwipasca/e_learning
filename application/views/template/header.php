@@ -81,8 +81,8 @@
                   
                   <li><a><i class="fa fa-edit"></i> Jadwal <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="form.html">Lihat Mahasiswa</a></li>
                       <li><a href="form_advanced.html">Tugas</a></li>
+                      <li><a href="form.html">Lihat Mahasiswa</a></li>
                     </ul>
                   </li>
 
